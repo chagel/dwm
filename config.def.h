@@ -6,8 +6,12 @@ static const unsigned int gappx     = 30;       /* gap pixel between windows */
 static const unsigned int snap      = 30;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Hiragino Sans GB W3:size=7" };
-static const char dmenufont[]       = "Hiragino Sans GB W3:size=7";
+static const char *fonts[]          = { 
+  "xos4 Terminess Powerline:style:Bold:size=7",
+  "Hiragino Sans GB W3:size=7", 
+  "FontAwesome:size=8",
+};
+static const char dmenufont[]       = "xos4 Terminess Powerline:style:Bold:size=12";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#666666";
 static const char col_gray3[]       = "#bbbbbb";
@@ -37,9 +41,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
-  { "chromium", NULL,       NULL,       1 << 1,       False,         False,       -1 },
-  { "firefox",  NULL,       NULL,       1 << 1,       False,         False,       -1 },
-  { "surf",     NULL,       NULL,       1 << 1,       False,         False,       -1 },
+  { "chromium", NULL,       NULL,       2,            False,         False,       -1 },
+  { "st",       "",         "",         0,            False,         False,       -1 },
 };
 
 /* layout(s) */
@@ -77,11 +80,10 @@ static const char *screenbrightnesspcmd[] = { "sudo", "xbacklight", "-inc", "10"
 static const char *screenbrightnessmcmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
 //static const char *mictcmd[] = {"amixer", "-c", "0", "set", "Mic", "toggle", NULL};
 static const char *browsercmd[]  = { "chromium", NULL};
+static const char *lockcmd[]  = { "lock", NULL};
+static const char *prtscreencmd[]  = { "screenshot", NULL};
+static const char *dictcmd[]  = { "def", NULL};
 //XF86XK_AudioMicMute
-//XF86XK_SplitScreen
-//XF86XK_Bluetooth
-//XF86XK_WLAN	
-
 
 #include </usr/include/X11/XF86keysym.h> //XF86XK_*
 static Key keys[] = {
@@ -94,6 +96,9 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessUp,     spawn,          {.v = screenbrightnesspcmd } },
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          {.v = screenbrightnessmcmd } },
   { 0,                            XF86XK_Favorites,           spawn,          {.v = browsercmd } },
+  { 0,                            XF86XK_Display,             spawn,          {.v = lockcmd } },
+  { 0,                            XF86XK_Tools,               spawn,          {.v = dictcmd } },
+  { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
