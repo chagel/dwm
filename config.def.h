@@ -83,6 +83,7 @@ static const char *browsercmd[]  = { "chromium", NULL};
 static const char *lockcmd[]  = { "lock", NULL};
 static const char *prtscreencmd[]  = { "screenshot", NULL};
 static const char *dictcmd[]  = { "def", NULL};
+static const char *notecmd[]  = { "st", "-e", "vim", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL};
 //XF86XK_AudioMicMute
 
 #include </usr/include/X11/XF86keysym.h> //XF86XK_*
@@ -99,6 +100,8 @@ static Key keys[] = {
   { 0,                            XF86XK_Display,             spawn,          {.v = lockcmd } },
   { 0,                            XF86XK_Tools,               spawn,          {.v = dictcmd } },
   { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
+  { 0,                            0xffc8,                     spawn,          {.v = notecmd } },
+  { MODKEY,                       XK_n,                       spawn,          {.v = notecmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
