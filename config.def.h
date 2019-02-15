@@ -83,6 +83,8 @@ static const char *lockcmd[]  = { "lock", NULL};
 static const char *monitorcmd[]  = { "monitor", NULL};
 static const char *prtscreencmd[]  = { "screenshot", NULL};
 static const char *dictcmd[]  = { "def", NULL};
+static const char *playnextcmd[]  = { "spotifycli", "--next", NULL};
+static const char *playpausecmd[]  = { "spotifycli", "--playpause", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "vim", "-c", "set nonumber norelativenumber laststatus=0", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL };
 //XF86XK_AudioMicMute
@@ -102,6 +104,8 @@ static Key keys[] = {
   { 0,                            XF86XK_Tools,               spawn,          {.v = dictcmd } },
   { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
   { 0,                            0xffc4,                     spawn,          {.v = lockcmd } },
+	{ MODKEY|ShiftMask,             XK_n,                       spawn,          {.v = playnextcmd } },
+	{ MODKEY|ShiftMask,             XK_p,                       spawn,          {.v = playpausecmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
