@@ -41,6 +41,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
+	{ "albert",   NULL,       NULL,       0,            0,             1,           -1 },
   { "chromium", NULL,       NULL,       2,            False,         False,       -1 },
   { "st",       "",         "",         0,            False,         False,       -1 },
 };
@@ -86,6 +87,7 @@ static const char *prtscreencmd[]  = { "screenshot", NULL};
 static const char *dictcmd[]  = { "def", NULL};
 static const char *playnextcmd[]  = { "spotifycli", "--next", NULL};
 static const char *playpausecmd[]  = { "spotifycli", "--playpause", NULL};
+static const char *showalbertcmd[]  = { "albert", "show", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "vim", "-c", "set nonumber norelativenumber laststatus=0", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL };
 //XF86XK_AudioMicMute
@@ -108,6 +110,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_n,                       spawn,          {.v = playnextcmd } },
 	{ MODKEY|ShiftMask,             XK_p,                       spawn,          {.v = playpausecmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
+	{ ControlMask,                  XK_space,                   spawn,          {.v = showalbertcmd} },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
@@ -123,7 +126,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,                   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating, {0} },
 	{ MODKEY,                       XK_0,                       view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,                       tag,            {.ui = ~0 } },
