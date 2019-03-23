@@ -95,6 +95,7 @@ struct Client {
 	int bw, oldbw;
 	unsigned int tags;
 	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+  int ismax, wasfloating;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -239,6 +240,12 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void xinitvisual();
 static void zoom(const Arg *arg);
+static void togglemaximize(const Arg *arg);
+static void toggleleft(const Arg *arg);
+static void toggleright(const Arg *arg);
+static void toggletop(const Arg *arg);
+static void togglebottom(const Arg *arg);
+static void togglecenter(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -1090,6 +1097,8 @@ manage(Window w, XWindowAttributes *wa)
 	updatewmhints(c);
 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
 	grabbuttons(c, 0);
+  c->wasfloating = 0;
+	c->ismax = 0;
 	if (!c->isfloating)
 		c->isfloating = c->oldstate = trans != None || c->isfixed;
 	if (c->isfloating)
@@ -2221,6 +2230,66 @@ zoom(const Arg *arg)
 		if (!c || !(c = nexttiled(c->next)))
 			return;
 	pop(c);
+}
+
+void
+maximize(int x, int y, int w, int h) {
+  XEvent ev;
+
+  if(!selmon->sel || selmon->sel->isfixed)
+    return;
+  XRaiseWindow(dpy, selmon->sel->win);
+  if(!selmon->sel->ismax) {
+    if(!selmon->lt[selmon->sellt]->arrange || selmon->sel->isfloating)
+      selmon->sel->wasfloating = True;
+    else {
+      togglefloating(NULL);
+      selmon->sel->wasfloating = False;
+    }
+    selmon->sel->oldx = selmon->sel->x;
+    selmon->sel->oldy = selmon->sel->y;
+    selmon->sel->oldw = selmon->sel->w;
+    selmon->sel->oldh = selmon->sel->h;
+    resize(selmon->sel, x, y, w, h, True);
+    selmon->sel->ismax = True;
+  }
+  else {
+    resize(selmon->sel, selmon->sel->oldx, selmon->sel->oldy, selmon->sel->oldw, selmon->sel->oldh, True);
+    if(!selmon->sel->wasfloating)
+      togglefloating(NULL);
+    selmon->sel->ismax = False;
+  }
+  drawbar(selmon);
+  while(XCheckMaskEvent(dpy, EnterWindowMask, &ev));
+}
+
+void
+togglemaximize(const Arg *arg) {
+  maximize(selmon->wx, selmon->wy, selmon->ww - 2 * borderpx, selmon->wh - 2 * borderpx);
+}
+
+void
+toggleleft(const Arg *arg) {
+  maximize(selmon->wx, selmon->wy, selmon->ww / 2, selmon->wh - 2 * borderpx);
+}
+
+void
+toggleright(const Arg *arg) {
+  maximize(selmon->ww / 2, selmon->wy, selmon->ww - 2 * borderpx, selmon->wh - 2 * borderpx);
+}
+
+void
+toggletop(const Arg *arg) {
+  maximize(selmon->wx, selmon->wy, selmon->ww - 2 * borderpx, selmon->wh / 2);
+}
+void
+togglebottom(const Arg *arg) {
+  maximize(selmon->wx, selmon->wh / 2, selmon->ww - 2 * borderpx, selmon->wh - 2 * borderpx);
+}
+
+void
+togglecenter(const Arg *arg) {
+  maximize(selmon->ww * 0.25, selmon->wh * 0.25, selmon->ww / 2, selmon->wh / 2);
 }
 
 int
