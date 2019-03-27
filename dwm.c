@@ -2282,7 +2282,7 @@ togglebottom(const Arg *arg) {
 
 void
 togglecenter(const Arg *arg) {
-  maximize(selmon->ww * 0.25, selmon->wh * 0.25, selmon->ww / 2, selmon->wh / 2);
+  maximize(selmon->ww * 0.15, selmon->wh * 0.15, selmon->ww * 0.7, selmon->wh * 0.7);
 }
 
 int
