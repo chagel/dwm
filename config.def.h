@@ -41,7 +41,6 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
-	{ "albert",   NULL,       NULL,       0,            0,             1,           -1 },
   { "chromium", NULL,       NULL,       2,            False,         False,       -1 },
   { "st",       "",         "",         0,            False,         False,       -1 },
 };
@@ -84,10 +83,9 @@ static const char *browsercmd[]  = { "chromium", NULL};
 static const char *lockcmd[]  = { "lock", NULL};
 static const char *monitorcmd[]  = { "monitor", NULL};
 static const char *prtscreencmd[]  = { "screenshot", NULL};
-static const char *dictcmd[]  = { "def", NULL};
+static const char *toolboxcmd[]  = { "gungnir", NULL};
 static const char *playnextcmd[]  = { "spotifycli", "--next", NULL};
 static const char *playpausecmd[]  = { "spotifycli", "--playpause", NULL};
-static const char *showalbertcmd[]  = { "albert", "show", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "vim", "-c", "set nonumber norelativenumber laststatus=0", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL };
 //XF86XK_AudioMicMute
@@ -104,13 +102,12 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          {.v = screenbrightnessmcmd } },
   { 0,                            XF86XK_Favorites,           spawn,          {.v = browsercmd } },
   { 0,                            XF86XK_Display,             spawn,          {.v = monitorcmd } },
-  { 0,                            XF86XK_Tools,               spawn,          {.v = dictcmd } },
+  { 0,                            XF86XK_Tools,               spawn,          {.v = toolboxcmd } },
   { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
   { 0,                            0xffc4,                     spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_n,                       spawn,          {.v = playnextcmd } },
 	{ MODKEY|ShiftMask,             XK_p,                       spawn,          {.v = playpausecmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
-	{ ControlMask,                  XK_space,                   spawn,          {.v = showalbertcmd} },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
@@ -122,7 +119,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,                       incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_z,                       zoom,           {0} },
 	{ MODKEY,                       XK_Tab,                     view,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_c,                       killclient,     {0} },
+	{ MODKEY,                       XK_q,                       killclient,     {0} },
 	{ MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[2]} },
