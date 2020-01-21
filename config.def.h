@@ -80,13 +80,14 @@ static const char *screenbrightnessmcmd[] = { "sudo", "xbacklight", "-dec", "10"
 //static const char *mictcmd[] = {"amixer", "-c", "0", "set", "Mic", "toggle", NULL};
 static const char *browsercmd[]  = { "chromium", NULL};
 static const char *lockcmd[]  = { "lock", NULL};
+static const char *filecmd[]  = { "st", "-t", "filenav", "-g", "120x34", "open", NULL };
 static const char *monitorcmd[]  = { "monitor", NULL};
 static const char *prtscreencmd[]  = { "screenshot", NULL};
 static const char *toolboxcmd[]  = { "gungnir", NULL};
 static const char *playnextcmd[]  = { "spotifycli", "--next", NULL};
 static const char *playpausecmd[]  = { "spotifycli", "--playpause", NULL};
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "vim", "-c", "set nonumber norelativenumber laststatus=0", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "nvim", "-c", "set nonumber norelativenumber laststatus=0", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL };
 //XF86XK_AudioMicMute
 
 #include </usr/include/X11/XF86keysym.h> //XF86XK_*
@@ -104,6 +105,7 @@ static Key keys[] = {
   { 0,                            XF86XK_Tools,               spawn,          {.v = toolboxcmd } },
   { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
   { 0,                            0xffc4,                     spawn,          {.v = lockcmd } },
+  { 0,                            0xffc6,                     spawn,          {.v = filecmd } },
 	{ MODKEY|ShiftMask,             XK_n,                       spawn,          {.v = playnextcmd } },
 	{ MODKEY|ShiftMask,             XK_p,                       spawn,          {.v = playpausecmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
