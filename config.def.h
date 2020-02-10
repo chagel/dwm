@@ -41,7 +41,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
-  { "chromium", NULL,       NULL,       2,            False,         False,       -1 },
+  { "firefox", NULL,       NULL,       2,            False,         False,       -1 },
   { "st",       "",         "",         0,            False,         False,       -1 },
 };
 
@@ -79,7 +79,7 @@ static const char *volmutecmd[] = { "amixer", "set", "Master", "toggle", NULL };
 static const char *screenbrightnesspcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
 static const char *screenbrightnessmcmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
 //static const char *mictcmd[] = {"amixer", "-c", "0", "set", "Mic", "toggle", NULL};
-static const char *browsercmd[]  = { "chromium", NULL};
+static const char *browsercmd[]  = { "firefox", NULL};
 static const char *lockcmd[]  = { "lock", NULL};
 static const char *filecmd[]  = { "st", "-t", "filenav", "-g", "120x34", "open", NULL };
 static const char *monitorcmd[]  = { "monitor", NULL};
