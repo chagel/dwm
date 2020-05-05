@@ -95,6 +95,7 @@ static Key keys[] = {
 	/* modifier                     key                         function        argument */
 	{ MODKEY,                       XK_p,                       spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_g,                       spawn,          {.v = toolboxcmd } },
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volpcmd } },
   { 0,                            XF86XK_AudioLowerVolume,    spawn,          {.v = volmcmd } },
   { 0,                            XF86XK_AudioMute,           spawn,          {.v = volmutecmd } },
