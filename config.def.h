@@ -57,6 +57,8 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
+  { "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -122,8 +124,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,                       focusstack,     {.i = +1} },
 	{ MODKEY|ShiftMask,             XK_h,                       setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_l,                       setmfact,       {.f = +0.05} },
-  { MODKEY|ShiftMask,             XK_j,                       setcfact,       {.f = +0.25} },
-	{ MODKEY|ShiftMask,             XK_k,                       setcfact,       {.f = -0.25} },
+	{ MODKEY|ShiftMask,             XK_j,                       setcfact,       {.f = -0.25} },
+  { MODKEY|ShiftMask,             XK_k,                       setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_o,                       setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_i,                       incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,                       incnmaster,     {.i = -1 } },
@@ -135,6 +137,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[2]} },
   { MODKEY,                       XK_u,                       setlayout,      {.v = &layouts[3]} },
   { MODKEY|ShiftMask,             XK_u,                       setlayout,      {.v = &layouts[4]} },
+  { MODKEY,                       XK_y,                       setlayout,      {.v = &layouts[5]} },
+  { MODKEY|ShiftMask,             XK_y,                       setlayout,      {.v = &layouts[6]} },
   { MODKEY,                       XK_r,                       resetlayout,    {0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating, {0} },
 	{ MODKEY,                       XK_0,                       view,           {.ui = ~0 } },
