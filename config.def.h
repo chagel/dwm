@@ -40,8 +40,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
-  { "firefox", NULL,       NULL,       2,            False,         False,       -1 },
+	//{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
+  //{ "firefox", NULL,       NULL,       2,            False,         False,       -1 },
   { "st",       "",         "",         0,            False,         False,       -1 },
 };
 
@@ -79,18 +79,20 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *volpcmd[] = { "pulseaudio-ctl", "up", NULL };
 static const char *volmcmd[] = { "pulseaudio-ctl", "down", NULL };
 static const char *volmutecmd[] = { "amixer", "set", "Master", "toggle", NULL };
+static const char *pavuctrlCmd[] = { "pavucontrol", NULL };
 static const char *screenbrightnesspcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
 static const char *screenbrightnessmcmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
 //static const char *mictcmd[] = {"amixer", "-c", "0", "set", "Mic", "toggle", NULL};
 static const char *browsercmd[]  = { "firefox", NULL};
+static const char *blueman[]  = { "blueman-manager", NULL};
 static const char *lockcmd[]  = { "lock", NULL};
 static const char *filecmd[]  = { "st", "-t", "filenav", "-g", "120x34", "open", NULL };
 static const char *monitorcmd[]  = { "monitor", NULL};
 static const char *prtscreencmd[]  = { "screenshot", NULL};
 static const char *toolboxcmd[]  = { "rusher", NULL};
 static const char *translatercmd[]  = { "rusher", "--def", NULL};
-static const char *playnextcmd[]  = { "spotifycli", "--next", NULL};
-static const char *playpausecmd[]  = { "spotifycli", "--playpause", NULL};
+//static const char *playnextcmd[]  = { "spotifycli", "--next", NULL};
+//static const char *playpausecmd[]  = { "spotifycli", "--playpause", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "nvim", "-c", "set nonumber norelativenumber laststatus=0", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL };
 //XF86XK_AudioMicMute
@@ -113,14 +115,15 @@ static Key keys[] = {
   { 0,                            XF86XK_Tools,               spawn,          {.v = toolboxcmd } },
   { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
   { MODKEY|ControlMask|ShiftMask, XK_s,                       spawn,          {.v = prtscreencmd } },
+  { 0,                            0xffc1,                     spawn,          {.v = pavuctrlCmd } },
   { 0,                            0xffc4,                     spawn,          {.v = lockcmd } },
   { 0,                            0xffc5,                     spawn,          {.v = monitorcmd } },
   { 0,                            0xffc6,                     spawn,          {.v = toolboxcmd } },
-  //{ 0,                            0xffc7,                     spawn,          {.v = filecmd } },
+  { 0,                            0xffc7,                     spawn,          {.v = blueman } },
   { 0,                            0xffc8,                     spawn,          {.v = translatercmd } },
   { 0,                            0xffc9,                     spawn,          {.v = browsercmd } },
-	{ MODKEY|ShiftMask,             XK_n,                       spawn,          {.v = playnextcmd } },
-	{ MODKEY|ShiftMask,             XK_p,                       spawn,          {.v = playpausecmd } },
+	//{ MODKEY|ShiftMask,             XK_n,                       spawn,          {.v = playnextcmd } },
+	//{ MODKEY|ShiftMask,             XK_p,                       spawn,          {.v = playpausecmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
