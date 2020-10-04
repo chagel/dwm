@@ -32,7 +32,7 @@ static const unsigned int alphas[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -92,10 +92,10 @@ static const char *monitorcmd[]  = { "monitor", NULL};
 static const char *prtscreencmd[]  = { "screenshot", NULL};
 static const char *toolboxcmd[]  = { "rusher", NULL};
 static const char *translatercmd[]  = { "rusher", "--def", NULL};
-//static const char *playnextcmd[]  = { "spotifycli", "--next", NULL};
-//static const char *playpausecmd[]  = { "spotifycli", "--playpause", NULL};
+static const char *playnextcmd[]  = { "playerctl", "next", NULL};
+static const char *playpausecmd[]  = { "playerctl", "play-pause", NULL};
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "nvim", "-c", "set nonumber norelativenumber laststatus=0", "/home/mike/Dropbox/Sketch/Notes/scratch.pad.md", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "less", "/home/mike/Dropbox/Sketch/Notes/scratch.note", NULL };
 //XF86XK_AudioMicMute
 
 #include </usr/include/X11/XF86keysym.h> //XF86XK_*
@@ -108,12 +108,14 @@ static Key keys[] = {
   { 0,                            XF86XK_AudioLowerVolume,    spawn,          {.v = volmcmd } },
   { MODKEY|ControlMask|ShiftMask, XK_equal,                   spawn,          {.v = volpcmd } },
   { MODKEY|ControlMask|ShiftMask, XK_minus,                   spawn,          {.v = volmcmd } },
+	{ MODKEY|ControlMask|ShiftMask, XK_n,                       spawn,          {.v = playnextcmd } },
+	{ MODKEY|ControlMask|ShiftMask, XK_p,                       spawn,          {.v = playpausecmd } },
   { 0,                            XF86XK_AudioMute,           spawn,          {.v = volmutecmd } },
   { 0,                            XF86XK_MonBrightnessUp,     spawn,          {.v = screenbrightnesspcmd } },
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          {.v = screenbrightnessmcmd } },
   { 0,                            XF86XK_Favorites,           spawn,          {.v = browsercmd } },
   { 0,                            XF86XK_Display,             spawn,          {.v = monitorcmd } },
-  { 0,                            XF86XK_Tools,               spawn,          {.v = toolboxcmd } },
+  //{ 0,                            XF86XK_Tools,               spawn,          {.v = toolboxcmd } },
   { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
   { MODKEY|ControlMask|ShiftMask, XK_s,                       spawn,          {.v = prtscreencmd } },
   { 0,                            0xffc1,                     spawn,          {.v = pavuctrlCmd } },
@@ -123,8 +125,6 @@ static Key keys[] = {
   { 0,                            0xffc7,                     spawn,          {.v = blueman } },
   { 0,                            0xffc8,                     spawn,          {.v = translatercmd } },
   { 0,                            0xffc9,                     spawn,          {.v = browsercmd } },
-	//{ MODKEY|ShiftMask,             XK_n,                       spawn,          {.v = playnextcmd } },
-	//{ MODKEY|ShiftMask,             XK_p,                       spawn,          {.v = playpausecmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
