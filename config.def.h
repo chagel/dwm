@@ -13,16 +13,18 @@ static const char *fonts[]          = {
 };
 static const char dmenufont[]       = "xos4 Terminess Powerline:style:Bold:size=12";
 static const char col_gray1[]       = "#000000";
-static const char col_gray2[]       = "#666666";
+static const char col_gray2[]       = "#20212b";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#000000";
+//static const char col_high[]        = "#BD93F9";
+static const char col_high[]        = "#666666";
 static const unsigned int baralpha  = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_high  },
 };
 
 static const unsigned int alphas[][3] = {
@@ -123,7 +125,7 @@ static Key keys[] = {
   { 0,                            0xffc5,                     spawn,          {.v = monitorcmd } },
   { 0,                            0xffc6,                     spawn,          {.v = toolboxcmd } },
   { 0,                            0xffc7,                     spawn,          {.v = blueman } },
-  { 0,                            0xffc8,                     spawn,          {.v = translatercmd } },
+  //{ 0,                            0xffc8,                     spawn,          {.v = translatercmd } },
   { 0,                            0xffc9,                     spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
