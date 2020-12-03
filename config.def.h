@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 30;       /* gap pixel between windows */
+static const Gap default_gap        = {.isgap = 1, .realgap = 20, .gappx = 20};
 static const unsigned int snap      = 30;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -132,6 +132,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_h,                       focusstack,     {.i = -1} },
 	{ MODKEY,                       XK_l,                       focusstack,     {.i = +1} },
+	{ MODKEY,                       XK_minus,                   setgaps,        {.i = -5 } },
+	{ MODKEY,                       XK_equal,                   setgaps,        {.i = +5 } },
+	{ MODKEY|ShiftMask,             XK_minus,                   setgaps,        {.i = GAP_RESET } },
+	{ MODKEY|ShiftMask,             XK_equal,                   setgaps,        {.i = GAP_TOGGLE} },
 	{ MODKEY|ShiftMask,             XK_h,                       setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_l,                       setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_j,                       setcfact,       {.f = -0.25} },
