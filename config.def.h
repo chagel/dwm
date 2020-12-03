@@ -42,7 +42,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
-	//{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
+  { "feh",     NULL,       NULL,       0,            1,             1,           -1 },
   //{ "firefox", NULL,       NULL,       2,            False,         False,       -1 },
   { "st",       "",         "",         0,            False,         False,       -1 },
 };
@@ -97,6 +97,8 @@ static const char *playnextcmd[]  = { "playerctl", "next", NULL};
 static const char *playpausecmd[]  = { "playerctl", "play-pause", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "less", "/home/mike/Dropbox/Sketch/Notes/scratch.note", NULL };
+static const char *showKb[]  = { "feh", "/home/mike/.keyboard.png", NULL};
+static const char *suspend[]  = { "systemctl", "suspend", NULL};
 //XF86XK_AudioMicMute
 
 #include </usr/include/X11/XF86keysym.h> //XF86XK_*
@@ -107,10 +109,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,                       spawn,          {.v = toolboxcmd } },
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volpcmd } },
   { 0,                            XF86XK_AudioLowerVolume,    spawn,          {.v = volmcmd } },
-  { MODKEY|ControlMask|ShiftMask, XK_equal,                   spawn,          {.v = volpcmd } },
-  { MODKEY|ControlMask|ShiftMask, XK_minus,                   spawn,          {.v = volmcmd } },
-	{ MODKEY|ControlMask|ShiftMask, XK_n,                       spawn,          {.v = playnextcmd } },
-	{ MODKEY|ControlMask|ShiftMask, XK_p,                       spawn,          {.v = playpausecmd } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_equal,                   spawn,          {.v = volpcmd } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_minus,                   spawn,          {.v = volmcmd } },
+	{ Mod1Mask|ControlMask|ShiftMask, XK_n,                       spawn,          {.v = playnextcmd } },
+	{ Mod1Mask|ControlMask|ShiftMask, XK_p,                       spawn,          {.v = playpausecmd } },
   { 0,                            XF86XK_AudioMute,           spawn,          {.v = volmutecmd } },
   { 0,                            XF86XK_MonBrightnessUp,     spawn,          {.v = screenbrightnesspcmd } },
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          {.v = screenbrightnessmcmd } },
@@ -118,7 +120,6 @@ static Key keys[] = {
   { 0,                            XF86XK_Display,             spawn,          {.v = monitorcmd } },
   //{ 0,                            XF86XK_Tools,               spawn,          {.v = toolboxcmd } },
   { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
-  { MODKEY|ControlMask|ShiftMask, XK_s,                       spawn,          {.v = prtscreencmd } },
   { 0,                            0xffc1,                     spawn,          {.v = pavuctrlCmd } },
   { 0,                            0xffc4,                     spawn,          {.v = lockcmd } },
   { 0,                            0xffc5,                     spawn,          {.v = monitorcmd } },
@@ -172,7 +173,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                                       6)
 	TAGKEYS(                        XK_8,                                       7)
 	TAGKEYS(                        XK_9,                                       8)
-	{ MODKEY|ControlMask|ShiftMask, XK_q,                       quit,           {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_s,                       spawn,          {.v = prtscreencmd } },
+	{ Mod1Mask|ControlMask|ShiftMask, XK_q,                       quit,           {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_k,                       spawn,          {.v = showKb } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_l,                       spawn,        {.v = suspend } },
 };
 
 /* button definitions */
