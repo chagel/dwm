@@ -107,10 +107,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,                       spawn,          {.v = toolboxcmd } },
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volpcmd } },
   { 0,                            XF86XK_AudioLowerVolume,    spawn,          {.v = volmcmd } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_equal,                   spawn,          {.v = volpcmd } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_minus,                   spawn,          {.v = volmcmd } },
-	{ Mod1Mask|ControlMask|ShiftMask, XK_n,                       spawn,          {.v = playnextcmd } },
-	{ Mod1Mask|ControlMask|ShiftMask, XK_p,                       spawn,          {.v = playpausecmd } },
   { 0,                            XF86XK_AudioMute,           spawn,          {.v = volmutecmd } },
   { 0,                            XF86XK_MonBrightnessUp,     spawn,          {.v = screenbrightnesspcmd } },
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          {.v = screenbrightnessmcmd } },
@@ -126,6 +122,7 @@ static Key keys[] = {
   //{ 0,                            0xffc8,                     spawn,          {.v = translatercmd } },
   { 0,                            0xffc9,                     spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
+  { MODKEY,                       MODKEY,                     togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
@@ -177,12 +174,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period,                  focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,                   tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,                  tagmon,         {.i = +1 } },
-  { MODKEY|ShiftMask,             XK_Left,                    toggleleft,     {0} },
-  { MODKEY|ShiftMask,             XK_Right,                   toggleright,    {0} },
-  { MODKEY|ShiftMask,             XK_Down,                    togglebottom,   {0} },
-  { MODKEY|ShiftMask,             XK_Up,                      toggletop,      {0} },
-  { MODKEY|ShiftMask,             XK_c,                       togglecenter,   {0} },
-  { MODKEY|ShiftMask,             XK_m,                       togglemaximize, {0} },
 	TAGKEYS(                        XK_1,                                       0)
 	TAGKEYS(                        XK_2,                                       1)
 	TAGKEYS(                        XK_3,                                       2)
@@ -192,10 +183,21 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                                       6)
 	TAGKEYS(                        XK_8,                                       7)
 	TAGKEYS(                        XK_9,                                       8)
-  { Mod1Mask|ControlMask|ShiftMask, XK_s,                       spawn,          {.v = prtscreencmd } },
-	{ Mod1Mask|ControlMask|ShiftMask, XK_q,                       quit,           {0} },
-  { Mod1Mask|ControlMask|ShiftMask, XK_k,                       spawn,          {.v = showKb } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_l,                       spawn,        {.v = suspend } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_Left,                    toggleleft,     {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_Right,                   toggleright,    {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_Down,                    togglebottom,   {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_Up,                      toggletop,      {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_c,                       togglecenter,   {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_m,                       togglemaximize, {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_equal,                   spawn,        {.v = volpcmd } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_minus,                   spawn,        {.v = volmcmd } },
+	{ Mod1Mask|ControlMask|ShiftMask, XK_n,                       spawn,        {.v = playnextcmd } },
+	{ Mod1Mask|ControlMask|ShiftMask, XK_p,                       spawn,        {.v = playpausecmd } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_s,                       spawn,        {.v = prtscreencmd } },
+	{ Mod1Mask|ControlMask|ShiftMask, XK_q,                       quit,         {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_k,                       spawn,        {.v = showKb } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_w,                       spawn,        {.v = suspend } },
+  { Mod1Mask|ControlMask|ShiftMask, XK_l,                       spawn,        {.v = lockcmd } },
 };
 
 /* button definitions */
