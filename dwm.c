@@ -2587,26 +2587,27 @@ maximize(int x, int y, int w, int h) {
 
 void
 togglemaximize(const Arg *arg) {
-  maximize(selmon->wx, selmon->wy, selmon->ww - 2 * borderpx, selmon->wh - 2 * borderpx);
+  maximize(selmon->wx, selmon->wy, selmon->ww, selmon->wh);
 }
 
 void
 toggleleft(const Arg *arg) {
-  maximize(selmon->wx, selmon->wy, selmon->ww / 2, selmon->wh - 2 * borderpx);
+  maximize(selmon->wx + selmon->gap->gappx, selmon->wy + selmon->gap->gappx, selmon->ww / 2, selmon->wh - selmon->gap->gappx);
 }
 
 void
 toggleright(const Arg *arg) {
-  maximize(selmon->ww / 2, selmon->wy, selmon->ww - 2 * borderpx, selmon->wh - 2 * borderpx);
+  maximize(selmon->ww / 2, selmon->wy + selmon->gap->gappx, selmon->ww / 2 - 0.5*selmon->gap->gappx, selmon->wh - selmon->gap->gappx);
 }
 
 void
 toggletop(const Arg *arg) {
-  maximize(selmon->wx, selmon->wy, selmon->ww - 2 * borderpx, selmon->wh / 2);
+  maximize(selmon->wx + selmon->gap->gappx, selmon->wy + selmon->gap->gappx, selmon->ww - 2*selmon->gap->gappx, selmon->wh / 2);
 }
+
 void
 togglebottom(const Arg *arg) {
-  maximize(selmon->wx, selmon->wh / 2, selmon->ww - 2 * borderpx, selmon->wh - 2 * borderpx);
+  maximize(selmon->wx + selmon->gap->gappx, selmon->wh / 2 + selmon->gap->gappx, selmon->ww - 2*selmon->gap->gappx, selmon->wh /2);
 }
 
 void
