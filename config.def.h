@@ -8,10 +8,10 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { 
   "xos4 Terminess Powerline:style:Bold:size=7",
+  "Cantarell:size=7", 
   "Hiragino Sans GB W3:size=7", 
   "FontAwesome:size=8",
 };
-static const char dmenufont[]       = "xos4 Terminess Powerline:style:Bold:size=12";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#20212b";
 static const char col_gray3[]       = "#bbbbbb";
@@ -76,8 +76,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *runcmd[] = { "rofi", "-show", "run", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *volpcmd[] = { "pulseaudio-ctl", "up", NULL };
 static const char *volmcmd[] = { "pulseaudio-ctl", "down", NULL };
@@ -104,7 +103,7 @@ static const char *cloudcp[]  = { "ccp", NULL};
 #include </usr/include/X11/XF86keysym.h> //XF86XK_*
 static Key keys[] = {
 	/* modifier                     key                         function        argument */
-	{ MODKEY,                       XK_p,                       spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,                       spawn,          {.v = runcmd } },
 	{ MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_g,                       spawn,          {.v = toolboxcmd } },
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volpcmd } },
@@ -175,6 +174,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period,                  focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,                   tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,                  tagmon,         {.i = +1 } },
+  { MODKEY,                       XK_bracketright,            shiftview,      {.i = +1 } },
+	{ MODKEY,                       XK_bracketleft,             shiftview,      {.i = -1 } },
 	TAGKEYS(                        XK_1,                                       0)
 	TAGKEYS(                        XK_2,                                       1)
 	TAGKEYS(                        XK_3,                                       2)

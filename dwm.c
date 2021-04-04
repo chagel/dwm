@@ -274,6 +274,8 @@ static void toggleright(const Arg *arg);
 static void toggletop(const Arg *arg);
 static void togglebottom(const Arg *arg);
 static void togglecenter(const Arg *arg);
+static void shiftview(const Arg *arg);
+
 
 /* variables */
 static const char broken[] = "broken";
@@ -1959,8 +1961,6 @@ sigchld(int unused)
 void
 spawn(const Arg *arg)
 {
-	if (arg->v == dmenucmd)
-		dmenumon[0] = '0' + selmon->num;
 	if (fork() == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
@@ -2867,3 +2867,24 @@ bstackhoriz(Monitor *m) {
 		}
 	}
 }
+
+/** Function to shift the current view to the left/right
+ *
+ * @param: "arg->i" stores the number of tags to shift right (positive value)
+ *          or left (negative value)
+ */
+void
+shiftview(const Arg *arg) {
+	Arg shifted;
+
+	if(arg->i > 0) // left circular shift
+		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
+		   | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
+
+	else // right circular shift
+		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
+		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
+
+	view(&shifted);
+}
+
