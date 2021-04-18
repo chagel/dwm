@@ -77,6 +77,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *runcmd[] = { "rofi", "-show", "run", NULL };
+static const char *emojicmd[] = { "rofi", "-show", "emoji", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *volpcmd[] = { "pulseaudio-ctl", "up", NULL };
 static const char *volmcmd[] = { "pulseaudio-ctl", "down", NULL };
@@ -104,6 +105,7 @@ static const char *cloudcp[]  = { "ccp", NULL};
 static Key keys[] = {
 	/* modifier                     key                         function        argument */
 	{ MODKEY,                       XK_p,                       spawn,          {.v = runcmd } },
+	{ MODKEY,                       XK_e,                       spawn,          {.v = emojicmd } },
 	{ MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_g,                       spawn,          {.v = toolboxcmd } },
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volpcmd } },
