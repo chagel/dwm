@@ -42,8 +42,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
-  { "feh",     NULL,       NULL,       0,            1,             1,           -1 },
-  //{ "firefox", NULL,       NULL,       2,            False,         False,       -1 },
+  { "feh",      NULL,       NULL,       0,            1,             1,           -1 },
+  { "surf",     NULL,       NULL,       0,            1,             1,           -1 },
   { "st",       "",         "",         0,            False,         False,       -1 },
 };
 
@@ -76,7 +76,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *runcmd[] = { "rofi", "-show", "run", NULL };
+static const char *runcmd[] = { "rofi", "-show", "run", "-sort", NULL };
 static const char *emojicmd[] = { "rofi", "-show", "emoji", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *volpcmd[] = { "pulseaudio-ctl", "up", NULL };
@@ -95,9 +95,10 @@ static const char *toolboxcmd[]  = { "rusher", NULL};
 static const char *playnextcmd[]  = { "playerctl", "next", NULL};
 static const char *playpausecmd[]  = { "playerctl", "play-pause", NULL};
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "less", "/home/mike/Dropbox/Sketch/Notes/scratch.note", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "less", "/home/mike/.scratch.note", NULL };
 static const char *showKb[]  = { "feh", "/home/mike/.keyboard.png", NULL};
-static const char *suspend[]  = { "systemctl", "suspend", NULL};
+static const char *translatecmd[]  = { "rofi", "-sidebar-mode", "-modi", "local:define,cloud:translate", "-show", NULL};
+static const char *suspend[]  = { "rofi", "-show", "p", "-modi", "p:rofi-power-menu", NULL};
 static const char *cloudcp[]  = { "ccp", NULL};
 //XF86XK_AudioMicMute
 
@@ -108,6 +109,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_e,                       spawn,          {.v = emojicmd } },
 	{ MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_g,                       spawn,          {.v = toolboxcmd } },
+	{ MODKEY,                       XK_o,                       spawn,          {.v = translatecmd } },
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volpcmd } },
   { 0,                            XF86XK_AudioLowerVolume,    spawn,          {.v = volmcmd } },
   { 0,                            XF86XK_AudioMute,           spawn,          {.v = volmutecmd } },
@@ -122,7 +124,6 @@ static Key keys[] = {
   { 0,                            0xffc5,                     spawn,          {.v = monitorcmd } },
   { 0,                            0xffc6,                     spawn,          {.v = toolboxcmd } },
   { 0,                            0xffc7,                     spawn,          {.v = blueman } },
-  //{ 0,                            0xffc8,                     spawn,          {.v = translatercmd } },
   { 0,                            0xffc9,                     spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
