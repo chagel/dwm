@@ -76,56 +76,16 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *runcmd[] = { "rofi", "-show", "run", "-sort", NULL };
-static const char *emojicmd[] = { "rofi", "-show", "emoji", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *volpcmd[] = { "pulseaudio-ctl", "up", NULL };
-static const char *volmcmd[] = { "pulseaudio-ctl", "down", NULL };
-static const char *volmutecmd[] = { "amixer", "set", "Master", "toggle", NULL };
-static const char *pavuctrlCmd[] = { "pavucontrol", NULL };
-static const char *screenbrightnesspcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
-static const char *screenbrightnessmcmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
-//static const char *mictcmd[] = {"amixer", "-c", "0", "set", "Mic", "toggle", NULL};
-static const char *browsercmd[]  = { "firefox", NULL};
-static const char *blueman[]  = { "blueman-manager", NULL};
-static const char *lockcmd[]  = { "lock", NULL};
-static const char *monitorcmd[]  = { "monitor", NULL};
-static const char *prtscreencmd[]  = { "screenshot", NULL};
-static const char *toolboxcmd[]  = { "rusher", NULL};
-static const char *playnextcmd[]  = { "playerctl", "next", NULL};
-static const char *playpausecmd[]  = { "playerctl", "play-pause", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "less", "/home/mike/.scratch.note", NULL };
-static const char *showKb[]  = { "feh", "/home/mike/.keyboard.png", NULL};
-static const char *translatecmd[]  = { "rofi", "-sidebar-mode", "-modi", "local:define,cloud:translate", "-show", NULL};
-static const char *suspend[]  = { "rofi", "-show", "p", "-modi", "p:rofi-power-menu", NULL};
-static const char *cloudcp[]  = { "ccp", NULL};
+
 //XF86XK_AudioMicMute
 
 #include </usr/include/X11/XF86keysym.h> //XF86XK_*
 static Key keys[] = {
 	/* modifier                     key                         function        argument */
-	{ MODKEY,                       XK_p,                       spawn,          {.v = runcmd } },
-	{ MODKEY,                       XK_e,                       spawn,          {.v = emojicmd } },
-	{ MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_g,                       spawn,          {.v = toolboxcmd } },
-	{ MODKEY,                       XK_o,                       spawn,          {.v = translatecmd } },
-  { 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volpcmd } },
-  { 0,                            XF86XK_AudioLowerVolume,    spawn,          {.v = volmcmd } },
-  { 0,                            XF86XK_AudioMute,           spawn,          {.v = volmutecmd } },
-  { 0,                            XF86XK_MonBrightnessUp,     spawn,          {.v = screenbrightnesspcmd } },
-  { 0,                            XF86XK_MonBrightnessDown,   spawn,          {.v = screenbrightnessmcmd } },
-  { 0,                            XF86XK_Favorites,           spawn,          {.v = browsercmd } },
-  { 0,                            XF86XK_Display,             spawn,          {.v = monitorcmd } },
-  //{ 0,                            XF86XK_Tools,               spawn,          {.v = toolboxcmd } },
-  { 0,                            XK_Print,                   spawn,          {.v = prtscreencmd } },
-  { 0,                            0xffc1,                     spawn,          {.v = pavuctrlCmd } },
-  { 0,                            0xffc4,                     spawn,          {.v = lockcmd } },
-  { 0,                            0xffc5,                     spawn,          {.v = monitorcmd } },
-  { 0,                            0xffc6,                     spawn,          {.v = toolboxcmd } },
-  { 0,                            0xffc7,                     spawn,          {.v = blueman } },
-  { 0,                            0xffc9,                     spawn,          {.v = browsercmd } },
-	{ MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
+  { MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,                       togglebar,      {0} },
 	{ MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
@@ -192,18 +152,9 @@ static Key keys[] = {
   { Mod1Mask|ControlMask|ShiftMask, XK_Right,                   toggleright,    {0} },
   { Mod1Mask|ControlMask|ShiftMask, XK_Down,                    togglebottom,   {0} },
   { Mod1Mask|ControlMask|ShiftMask, XK_Up,                      toggletop,      {0} },
-  //{ Mod1Mask|ControlMask|ShiftMask, XK_c,                       togglecenter,   {0} },
+  { Mod1Mask|ControlMask|ShiftMask, XK_c,                       togglecenter,   {0} },
   { Mod1Mask|ControlMask|ShiftMask, XK_m,                       togglemaximize, {0} },
-  { Mod1Mask|ControlMask|ShiftMask, XK_equal,                   spawn,        {.v = volpcmd } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_minus,                   spawn,        {.v = volmcmd } },
-	{ Mod1Mask|ControlMask|ShiftMask, XK_n,                       spawn,        {.v = playnextcmd } },
-	{ Mod1Mask|ControlMask|ShiftMask, XK_p,                       spawn,        {.v = playpausecmd } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_s,                       spawn,        {.v = prtscreencmd } },
 	{ Mod1Mask|ControlMask|ShiftMask, XK_q,                       quit,         {0} },
-  { Mod1Mask|ControlMask|ShiftMask, XK_k,                       spawn,        {.v = showKb } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_w,                       spawn,        {.v = suspend } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_l,                       spawn,        {.v = lockcmd } },
-  { Mod1Mask|ControlMask|ShiftMask, XK_c,                       spawn,        {.v = cloudcp } },
 };
 
 /* button definitions */
