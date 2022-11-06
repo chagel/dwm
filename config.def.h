@@ -80,9 +80,6 @@ static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "less", "/home/mike/.scratch.note", NULL };
 
-//XF86XK_AudioMicMute
-
-#include </usr/include/X11/XF86keysym.h> //XF86XK_*
 static Key keys[] = {
 	/* modifier                     key                         function        argument */
   { MODKEY,                       XK_grave,                   togglescratch,  {.v = scratchpadcmd } },
@@ -159,7 +156,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
