@@ -2619,12 +2619,12 @@ togglemaximize(const Arg *arg) {
 
 void
 toggleleft(const Arg *arg) {
-  maximize(selmon->wx + selmon->gap->gappx, selmon->wy + selmon->gap->gappx, selmon->ww / 2, selmon->wh - selmon->gap->gappx);
+  maximize(selmon->wx + selmon->gap->gappx, selmon->wy + selmon->gap->gappx, selmon->ww / 2, 2*selmon->wh - selmon->gap->gappx);
 }
 
 void
 toggleright(const Arg *arg) {
-  maximize(selmon->ww / 2, selmon->wy + selmon->gap->gappx, selmon->ww / 2 - 0.5*selmon->gap->gappx, selmon->wh - selmon->gap->gappx);
+  maximize(selmon->ww / 2, selmon->wy + selmon->gap->gappx, selmon->ww / 2 - selmon->gap->gappx, 2*selmon->wh - selmon->gap->gappx);
 }
 
 void
