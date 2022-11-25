@@ -1205,7 +1205,7 @@ monocle(Monitor *m)
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+		resize(c, m->wx + m->gap->gappx, m->wy + m->gap->gappx, m->ww - 2 * c->bw - 2 * m->gap->gappx, m->wh - 2 * c->bw - 2 * m->gap->gappx, 0);
 }
 
 void
@@ -2619,12 +2619,12 @@ togglemaximize(const Arg *arg) {
 
 void
 toggleleft(const Arg *arg) {
-  maximize(selmon->wx + selmon->gap->gappx, selmon->wy + selmon->gap->gappx, selmon->ww / 2, 2*selmon->wh - selmon->gap->gappx);
+  maximize(selmon->wx + selmon->gap->gappx, selmon->wy + selmon->gap->gappx, selmon->ww / 2, selmon->wh - selmon->gap->gappx);
 }
 
 void
 toggleright(const Arg *arg) {
-  maximize(selmon->ww / 2, selmon->wy + selmon->gap->gappx, selmon->ww / 2 - selmon->gap->gappx, 2*selmon->wh - selmon->gap->gappx);
+  maximize(selmon->ww / 2, selmon->wy + selmon->gap->gappx, selmon->ww / 2 - selmon->gap->gappx, selmon->wh - selmon->gap->gappx);
 }
 
 void
